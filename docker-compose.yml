@@ -1,0 +1,19 @@
+name: portfolio
+
+services:
+  astro:
+    build: .
+    command: "node ./dist/server/entry.mjs"
+    expose:
+      - "4321"
+    ports:
+      - "4321:4321"
+    init: true
+    networks:
+      - nginx
+    restart: always
+
+networks:
+  nginx:
+    name: nginx
+    external: true
