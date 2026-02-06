@@ -14,12 +14,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Copy files to VPS
+    - name: Install SSH keys
       env:
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        VPS_IP: ${{ secrets.VPS_IP }}
+        VPS_USER: ${{ secrets.VPS_USER }}
       run: |
         mkdir -p ~/.ssh
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
         chmod 600 ~/.ssh/id_ed25519
         ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts
-        rsync -avz --delete ./ $VPS_USER@$VPS_IP:/home/$VPS_USER/app
+
+    - name: Copy files to VPS
+      env:
+        VPS_IP: ${{ secrets.VPS_IP }}
+        VPS_USER: ${{ secrets.VPS_USER }}
+      run: "rsync -avz --delete ./ $VPS_USER@$VPS_IP:/home/$VPS_USER/app"
+
+    - name: Deploy docker container
+      env:
+        VPS_IP: ${{ secrets.VPS_IP }}
+        VPS_USER: ${{ secrets.VPS_USER }}
+      run: ssh $VPS_USER@VPS_IP "cd ~/app && docker compose up -d && exit"
+
+    - name: Cleanup
+      run: rm -rf ~/.ssh
+      
