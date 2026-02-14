@@ -23,10 +23,10 @@ jobs:
         ssh-keyscan -H ${{secrets.SSH_HOST}} > ~/.ssh/known_hosts
 
     - name: Copy files to VPS
-      run: "rsync -avz --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/app"
+      run: "rsync -avz --delete ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/astro"
 
     - name: Deploy docker container
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ~/app && docker compose up -d && exit"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ~/astro && docker compose up -d && exit"
 
     - name: Cleanup
       run: rm -rf ~/.ssh
