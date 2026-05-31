@@ -1,11 +1,331 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  url: string;
+  repo?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: 'Project Alpha',
+    description: 'A short punchy description of what this does and why it matters to the people who use it.',
+    tags: ['TypeScript', 'Node.js', 'PostgreSQL'],
+    url: 'https://placeholder.com',
+    repo: 'https://github.com/placeholder/alpha',
+  },
+  {
+    title: 'Project Beta',
+    description: 'Another compelling project — what problem it solves, who it helps, and what makes it interesting.',
+    tags: ['Rust', 'WebAssembly', 'React'],
+    url: 'https://placeholder.com',
+    repo: 'https://github.com/placeholder/beta',
+  },
+  {
+    title: 'Project Gamma',
+    description: 'A third project worth showcasing. Keep descriptions tight — one or two sentences is enough.',
+    tags: ['Python', 'FastAPI', 'Redis'],
+    url: 'https://placeholder.com',
+  },
+];
+
+const contactLinks = [
+  { label: 'Email',     value: 'your@email.com',              href: 'mailto:your@email.com' },
+  { label: 'GitHub',    value: 'github.com/placeholder',      href: 'https://github.com/placeholder' },
+  { label: 'LinkedIn',  value: 'linkedin.com/in/placeholder', href: 'https://linkedin.com/in/placeholder' },
+  { label: 'Twitter/X', value: '@placeholder',                href: 'https://x.com/placeholder' },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Jack Sanders">
+  <main>
+
+    <!-- ─── Hero ───────────────────────────────────────── -->
+    <section id="about" class="hero section">
+      <div class="container">
+        <p class="hero__eyebrow">Available for work &middot; Based in West Sussex, UK</p>
+        <h1 class="hero__name">Jack<br />Sanders</h1>
+        <p class="hero__tagline">Software Engineer @ American Express</p>
+        <p class="hero__bio">
+          Hi there! 👋 I'm Jack, and this is my home for all sorts of projects, experiments, and anything else that I feel like sticking up here.
+          <br />
+          I'm a software engineer by trade, and I love working on pretty much anything that brings value to the people who use it.
+        </p>
+        <div class="hero__cta">
+          <a href="/#projects" class="btn btn--primary">View Work</a>
+          <a href="/#contact" class="btn btn--ghost">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Projects ──────────────────────────────────── -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Selected Work</h2>
+        <ol class="project-list" role="list">
+          {projects.map((project, i) => (
+            <li class="project-item">
+              <span class="project-item__index">0{i + 1}</span>
+              <div class="project-item__content">
+                <h3 class="project-item__title">
+                  <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    {project.title}
+                  </a>
+                </h3>
+                <p class="project-item__desc">{project.description}</p>
+                <ul class="project-item__tags" role="list">
+                  {project.tags.map(tag => <li>{tag}</li>)}
+                </ul>
+              </div>
+              <div class="project-item__links">
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`GitHub repo for ${project.title}`}
+                    class="project-item__repo"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                  </a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- ─── Contact ────────────────────────────────────── -->
+    <section id="contact" class="section section--inverse">
+      <div class="container">
+        <h2 class="section-title">Let's Talk</h2>
+        <p class="contact__intro">
+          Open to interesting projects, collaborations, and conversations.
+        </p>
+        <div class="contact__links">
+          {contactLinks.map(link => (
+            <a
+              href={link.href}
+              class="contact-link"
+              target={link.href.startsWith('mailto') ? undefined : '_blank'}
+              rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+            >
+              <span class="contact-link__label">{link.label}</span>
+              <span class="contact-link__value">{link.value}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
 </Layout>
+
+<style>
+  /* ─── Hero ─────────────────────────────────────────── */
+  .hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+
+    &__eyebrow {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semibold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-6);
+    }
+
+    &__name {
+      font-size: var(--text-hero);
+      font-weight: var(--weight-extrabold);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      color: var(--color-text);
+      margin-bottom: var(--space-8);
+    }
+
+    &__tagline {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-medium);
+      color: var(--color-text);
+      max-width: 36ch;
+      margin-bottom: var(--space-6);
+    }
+
+    &__bio {
+      font-size: var(--text-lg);
+      color: var(--color-muted);
+      max-width: 48ch;
+      line-height: 1.7;
+      margin-bottom: var(--space-12);
+    }
+
+    &__cta {
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+  }
+
+  /* ─── Projects ──────────────────────────────────────── */
+  .project-list {
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto;
+    gap: var(--space-8);
+    align-items: start;
+    padding-block: var(--space-12);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-fast);
+
+    &:hover {
+      background-color: var(--color-surface);
+    }
+
+    &__index {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-bold);
+      color: var(--color-accent);
+      letter-spacing: 0.05em;
+      padding-top: 0.3em;
+    }
+
+    &__title {
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-extrabold);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-3);
+
+      a {
+        color: var(--color-text);
+        transition: color var(--transition-fast);
+
+        &:hover {
+          color: var(--color-accent);
+        }
+      }
+    }
+
+    &__desc {
+      font-size: var(--text-base);
+      color: var(--color-muted);
+      max-width: 60ch;
+      line-height: 1.6;
+      margin-bottom: var(--space-4);
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      list-style: none;
+
+      li {
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semibold);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        padding: var(--space-1) var(--space-3);
+        border-radius: var(--radius-sm);
+      }
+    }
+
+    &__links {
+      padding-top: 0.4em;
+    }
+
+    &__repo {
+      color: var(--color-muted);
+      transition: color var(--transition-fast);
+      line-height: 0;
+
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-item {
+      grid-template-columns: 2.5rem 1fr;
+
+      &__links {
+        display: none;
+      }
+    }
+  }
+
+  /* ─── Contact ───────────────────────────────────────── */
+  .contact__intro {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-medium);
+    color: var(--color-inverse-text);
+    opacity: 0.65;
+    max-width: 44ch;
+    margin-bottom: var(--space-16);
+  }
+
+  .contact__links {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid var(--color-inverse-text);
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-8);
+    border-bottom: 1px solid rgba(13, 13, 13, 0.15);
+    color: var(--color-inverse-text);
+    text-decoration: none;
+    transition: padding-left var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+
+    &:hover {
+      padding-left: var(--space-4);
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+
+    &__label {
+      font-size: var(--text-sm);
+      font-weight: var(--weight-bold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      min-width: 8rem;
+    }
+
+    &__value {
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-extrabold);
+      letter-spacing: -0.02em;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .contact-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-2);
+
+      &__value {
+        font-size: var(--text-xl);
+      }
+    }
+  }
+</style>
