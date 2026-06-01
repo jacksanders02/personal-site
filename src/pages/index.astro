@@ -1,43 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-interface Project {
-  title: string;
-  description: string;
-  tags: string[];
-  url: string;
-  repo?: string;
-}
-
-const projects: Project[] = [
-  {
-    title: 'Project Alpha',
-    description: 'A short punchy description of what this does and why it matters to the people who use it.',
-    tags: ['TypeScript', 'Node.js', 'PostgreSQL'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/alpha',
-  },
-  {
-    title: 'Project Beta',
-    description: 'Another compelling project — what problem it solves, who it helps, and what makes it interesting.',
-    tags: ['Rust', 'WebAssembly', 'React'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/beta',
-  },
-  {
-    title: 'Project Gamma',
-    description: 'A third project worth showcasing. Keep descriptions tight — one or two sentences is enough.',
-    tags: ['Python', 'FastAPI', 'Redis'],
-    url: 'https://placeholder.com',
-  },
-];
-
-const contactLinks = [
-  { label: 'Email',     value: 'your@email.com',              href: 'mailto:your@email.com' },
-  { label: 'GitHub',    value: 'github.com/placeholder',      href: 'https://github.com/placeholder' },
-  { label: 'LinkedIn',  value: 'linkedin.com/in/placeholder', href: 'https://linkedin.com/in/placeholder' },
-  { label: 'Twitter/X', value: '@placeholder',                href: 'https://x.com/placeholder' },
-];
+import { projects, socialLinks } from '../config/site';
 ---
 
 <Layout title="Jack Sanders">
@@ -109,7 +72,7 @@ const contactLinks = [
           Open to interesting projects, collaborations, and conversations.
         </p>
         <div class="contact__links">
-          {contactLinks.map(link => (
+          {socialLinks.map(link => (
             <a
               href={link.href}
               class="contact-link"
