@@ -29,3 +29,14 @@ Deployed via Docker/nginx to a self-hosted Hetzner VPS (see `Dockerfile`, `docke
 - **Branch names** follow the same `<type>/<kebab-case-description>` shape, e.g. `feat/v1`, `fix/docker-port`. Reuse the same type vocabulary as commits.
 - **Every commit includes Claude as co-author** (the standard `Co-Authored-By:` trailer) — don't suppress attribution for this repo.
 
+## Subagent workflow
+
+For non-trivial changes (skip for trivial one-line/typo fixes — implement those directly), use the project subagents in `.claude/agents/` instead of doing everything in one session:
+
+1. `architect` — designs the implementation plan; get approval on it before implementing.
+2. `engineer` — implements the approved plan and commits locally.
+3. `code-reviewer` — reviews the resulting diff. If it touches `Dockerfile`, `docker-compose.yml`, or `.github/workflows/*.yml`, also run `deploy-reviewer`.
+4. `qa` — verifies the result actually matches the original request.
+
+Resolve any findings (loop back to `engineer` if needed), then push and open/update the PR yourself — the `engineer` agent does not push or manage PRs.
+
