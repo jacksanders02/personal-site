@@ -38,6 +38,6 @@ For any change touching CSS, layout, or `.astro` components: start `npm run dev`
 
 ## GitHub Actions integration
 
-Two Claude Code Action workflows run in this repo (both need the `CLAUDE_CODE_OAUTH_TOKEN` secret):
-- `.github/workflows/claude.yml` — triggered by `@claude` mentions in issue comments, PR review comments, PR reviews, or new issues. A second, independent entry point into this repo alongside local sessions.
-- `.github/workflows/claude-code-review.yml` — automatically runs `/code-review` against every PR (opened/updated/reopened). Since the standing rule here is PR-first for anything reaching `main`, every PR gets this automated review in addition to Jack's own.
+`.github/workflows/claude.yml` runs the Claude Code GitHub Action (needs the `CLAUDE_CODE_OAUTH_TOKEN` secret), triggered by `@claude` mentions in issue comments, PR review comments, PR reviews, or new issues — a second, independent entry point into this repo alongside local sessions.
+
+There's deliberately no automated review-on-PR workflow: it would just have Claude reviewing code that Claude already wrote and reviewed in-session, with no independent signal added.
