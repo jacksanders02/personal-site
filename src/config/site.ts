@@ -13,28 +13,39 @@ export interface SocialLink {
   icon: string;
 }
 
-export const theBox: Project[] = [];
+export const theBox: Project[] = [
+  {
+    title: 'Residence Evil',
+    description: 'A 48-hour hackathon game built with three collaborators at SheffJamX, in response to the "go big or go home" prompt — players flee from their own pursuing home.',
+    tags: ['PICO-8', 'Game Jam'],
+    url: 'https://www.lexaloffle.com/bbs/?tid=140170',
+  },
+  {
+    title: 'Very Secure Website',
+    description: 'A "hack the box"-style teaching tool for first-year students to learn about common web vulnerabilities like broken authentication and SQL injection. Won HackSheffield 8.',
+    tags: ['Security', 'Web'],
+    url: 'https://www.pleasedonothack.us',
+  },
+  {
+    title: 'NotifReminders',
+    description: 'An Android app that pushes reminders directly to your notifications bar, skipping the clutter of a full calendar app.',
+    tags: ['Android', 'Java'],
+    url: 'https://github.com/jacksanders02/NotifReminders',
+  },
+];
 
 export const projects: Project[] = [
   {
-    title: 'Project Alpha',
-    description: 'A short punchy description of what this does and why it matters to the people who use it.',
-    tags: ['TypeScript', 'Node.js', 'PostgreSQL'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/alpha',
+    title: 'Perceptron Learning Algorithm Visualiser',
+    description: 'An interactive PyQt tool for visualising the Perceptron Learning Algorithm, built with a collaborator to explore single-layer decision boundaries on customisable datasets.',
+    tags: ['Python', 'PyQt'],
+    url: 'https://github.com/kj-collabs/simple-linear-perceptron',
   },
   {
-    title: 'Project Beta',
-    description: 'Another compelling project — what problem it solves, who it helps, and what makes it interesting.',
-    tags: ['Rust', 'WebAssembly', 'React'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/beta',
-  },
-  {
-    title: 'Project Gamma',
-    description: 'A third project worth showcasing. Keep descriptions tight — one or two sentences is enough.',
-    tags: ['Python', 'FastAPI', 'Redis'],
-    url: 'https://placeholder.com',
+    title: 'Portfolio Website',
+    description: 'An earlier personal portfolio — this site\'s predecessor — built to learn Next.js, TypeScript, and Tailwind CSS, and deployed on Vercel.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    url: 'https://github.com/jacksanders02/portfolio-site',
   },
 ];
 
