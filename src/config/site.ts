@@ -13,6 +13,8 @@ export interface SocialLink {
   icon: string;
 }
 
+export const theBox: Project[] = [];
+
 export const projects: Project[] = [
   {
     title: 'Project Alpha',
