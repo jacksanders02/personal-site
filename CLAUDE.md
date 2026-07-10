@@ -26,6 +26,8 @@ Pushing to `main` triggers a GitHub Actions workflow that rsyncs the repo to the
 
 **Never push or merge to `main` directly.** Always work on a feature branch and open a PR with `gh pr create` for Jack to review and comment on; Jack merges when ready. This is a standing rule for every session, not a one-time check.
 
+**Work on one PR at a time.** Don't spin up a new branch/PR for every small change — keep adding commits to the current open PR's branch unless Jack directs otherwise (e.g. explicitly asks for something separate, or the current PR has already merged).
+
 ## Commit, PR & branch conventions
 
 - **Commit messages and PR titles** follow [Conventional Commits](https://www.conventionalcommits.org/): `<type>(<scope>): <description>`, e.g. `feat(box): add the box`, `fix(docker): rename app directory`. Common types here: `feat`, `fix`, `chore`, `docs`, `refactor`, `ci`. Scope is the affected area (`docker`, `cd`, `box`, `links`, etc.) and is optional but preferred when it clarifies the change.
