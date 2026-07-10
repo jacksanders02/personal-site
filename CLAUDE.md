@@ -1,4 +1,8 @@
-# personal-site
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project overview
 
 Jack's personal site: hero/projects/contact homepage, a markdown blog, and "the box" (an empty page reserved for future mini-projects).
 
@@ -9,16 +13,17 @@ Static Astro v5 site (`output: 'static'`), TypeScript strict. Local dev uses `di
 - `npm run dev` — dev server at localhost:4321
 - `npm run build` — production build to `./dist`
 - `npm run preview` — preview a production build locally
-- `npm run astro -- check` — type-check `.astro` files
+- `npm run astro -- check` — type-check `.astro` files (there is no linter or test suite in this repo — this is the only automated check available)
 
 Deployed via Docker/nginx to a self-hosted Hetzner VPS (see `Dockerfile`, `docker-compose.yml`).
 
-## Conventions
+## Architecture
 
-- **Content-driven config**: projects, `socialLinks`, and `theBox` entries live in `src/config/site.ts` (typed via `Project`/`SocialLink` interfaces) — don't hardcode this data in pages. Some entries there are still placeholder content (Project Alpha/Beta/Gamma, placeholder social links) pending real data.
-- **Blog posts**: markdown files in `src/content/blog/`, schema enforced in `src/content.config.ts` (`title`, `description`, `pubDate`, `updatedDate?`, `tags`, `draft`).
-- **Styling**: plain CSS with custom properties (`--color-*`, `--space-*`, `--text-*`, `--weight-*`, defined in `src/styles/global.css`), PostCSS nesting (`&__modifier` BEM-ish style) via `postcss-nested`/`postcss-simple-vars`. No component/CSS framework — match this style rather than introducing one.
-- **Global chrome**: `Header.astro`, `Footer.astro`, `Fonts.astro` live under `src/layouts/components/`.
+- **Routing is file-based** under `src/pages/`: `index.astro` → `/`, `blog/index.astro` → `/blog`, `the-box/index.astro` → `/the-box`. `blog/[slug].astro` is the one dynamic route — it calls `getStaticPaths` + `getCollection('blog')` to pre-render one page per non-draft post at build time (static output, no server-side rendering of routes).
+- **Content collections** (`src/content.config.ts`) define the blog schema (`title`, `description`, `pubDate`, `updatedDate?`, `tags`, `draft`) validated against markdown files in `src/content/blog/`. Both `blog/index.astro` (listing) and `blog/[slug].astro` (detail, via `render(post)`) read from this collection through `astro:content` — there's no other data source for post content.
+- **`Layout.astro`** (`src/layouts/Layout.astro`) is the single shared page shell every route wraps in: it imports `global.css`, renders `<Fonts />`, `<Header />`, the page's `<slot />`, then `<Footer />`, and sets per-page `<title>`/description meta via props. Global chrome components live under `src/layouts/components/`.
+- **Site data is centralized**, not scattered across components: `projects`, `socialLinks`, and `theBox` (typed via `Project`/`SocialLink` in `src/config/site.ts`) are the single source for anything rendered as a list on the homepage or "the box" page. Some entries are still placeholder content pending real data.
+- **Styling** is plain CSS with custom properties (`--color-*`, `--space-*`, `--text-*`, `--weight-*` defined in `src/styles/global.css`) processed by a small PostCSS pipeline (`postcss.config.cjs`: `postcss-simple-vars`, `postcss-nested`, `autoprefixer`, `cssnano`). Components use per-file `<style>` blocks with BEM-ish nesting (`&__element`) — no component/CSS framework, no Tailwind, no CSS modules.
 
 ## Deploy & branch workflow
 
