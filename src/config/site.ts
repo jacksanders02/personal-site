@@ -16,7 +16,7 @@ export interface SocialLink {
 export const projects: Project[] = [
   {
     title: 'Software Hut Project',
-    description: 'Full-stack platform for annotating and browsing interactive golf course maps, built with a 7-person team for a real client. Won the Software Hut Prize and graded 95%.',
+    description: 'Full-stack platform for querying, annotating, and browsing interactive golf course maps, built with a 7-person team for a real client. Won the Software Hut Prize and graded 95%.',
     tags: ['Ruby', 'Rails', 'JavaScript'],
     url: '/projects/software-hut',
     repo: 'https://github.com/jacksanders02/strokes-gained',

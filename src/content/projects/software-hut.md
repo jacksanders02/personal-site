@@ -1,9 +1,9 @@
 ---
 title: "Software Hut Project"
-description: "A full-stack platform for querying and annotating golf course data, built for a real client with a 7-person team through the University of Sheffield's Software Hut module."
+description: "A full-stack platform for querying, annotating, and browsing interactive golf course maps, built for a real client with a 7-person team through the University of Sheffield's Software Hut module."
 date: "February – May 2023"
 tags: ["Ruby", "Rails", "JavaScript"]
-repoUrl: "https://github.com/jacksanders02/strokes-gained"
+repo: "https://github.com/jacksanders02/strokes-gained"
 ---
 
 **95% individual grade · Software Hut Prize (Client Awarded)**
