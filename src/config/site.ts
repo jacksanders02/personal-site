@@ -2,7 +2,7 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  url: string;
+  url?: string;
   repo?: string;
 }
 
@@ -13,28 +13,46 @@ export interface SocialLink {
   icon: string;
 }
 
-export const theBox: Project[] = [];
-
 export const projects: Project[] = [
   {
-    title: 'Project Alpha',
-    description: 'A short punchy description of what this does and why it matters to the people who use it.',
-    tags: ['TypeScript', 'Node.js', 'PostgreSQL'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/alpha',
+    title: 'Software Hut Project',
+    description: 'Full-stack platform for annotating and browsing interactive golf course maps, built with a 7-person team for a real client. Won the Software Hut Prize and graded 95%.',
+    tags: ['Ruby', 'Rails', 'JavaScript'],
+    url: '/projects/software-hut',
+    repo: 'https://github.com/jacksanders02/strokes-gained',
   },
   {
-    title: 'Project Beta',
-    description: 'Another compelling project — what problem it solves, who it helps, and what makes it interesting.',
-    tags: ['Rust', 'WebAssembly', 'React'],
-    url: 'https://placeholder.com',
-    repo: 'https://github.com/placeholder/beta',
+    title: 'Portfolio Website',
+    description: 'The predecessor to this site, and my first project built with Next.js — exploring TypeScript and Tailwind CSS along the way. Deployed on Vercel.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    url: 'https://github.com/jacksanders02/portfolio-site',
   },
   {
-    title: 'Project Gamma',
-    description: 'A third project worth showcasing. Keep descriptions tight — one or two sentences is enough.',
-    tags: ['Python', 'FastAPI', 'Redis'],
-    url: 'https://placeholder.com',
+    title: 'Very Secure Website',
+    description: 'A "hack the box"-style teaching tool covering common web vulnerabilities — authentication flaws, cryptography mistakes, and SQL injection. Won HackSheffield8.',
+    tags: ['Next.js'],
+    url: 'https://www.pleasedonothack.us',
+  },
+];
+
+export const theBox: Project[] = [
+  {
+    title: 'Perceptron Algorithm Visualiser',
+    description: 'A PyQt tool that visualises the Perceptron Learning Algorithm step by step, built with a friend over a week.',
+    tags: ['Python', 'PyQt'],
+    url: 'https://github.com/kj-collabs/simple-linear-perceptron',
+  },
+  {
+    title: 'Residence Evil',
+    description: 'A 48-hour SheffJamX hackathon game built in Pico-8 — flee your own pursuing home.',
+    tags: ['Pico-8', 'Game Jam'],
+    url: 'https://www.lexaloffle.com/bbs/?tid=140170',
+  },
+  {
+    title: 'NotifReminders',
+    description: 'An Android app for setting notification-based reminders.',
+    tags: ['Android', 'Java'],
+    url: 'https://github.com/jacksanders02/NotifReminders',
   },
 ];
 
