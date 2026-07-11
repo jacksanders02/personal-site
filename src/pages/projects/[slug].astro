@@ -36,8 +36,8 @@ const { Content } = await render(post);
               {post.data.tags.map(tag => <li>{tag}</li>)}
             </ul>
           )}
-          {post.data.repoUrl && (
-            <a href={post.data.repoUrl} target="_blank" rel="noopener noreferrer" class="project-writeup__repo">
+          {post.data.repo && (
+            <a href={post.data.repo} target="_blank" rel="noopener noreferrer" class="project-writeup__repo">
               View on GitHub
             </a>
           )}
@@ -122,111 +122,6 @@ const { Content } = await render(post);
       &:hover {
         color: var(--color-accent-hover);
       }
-    }
-  }
-
-  /* ─── Prose styles ──────────────────────────────────── */
-  .prose {
-    font-size: var(--text-lg);
-    line-height: 1.75;
-    color: var(--color-text);
-
-    :global(h2) {
-      font-size: var(--text-4xl);
-      font-weight: var(--weight-extrabold);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-top: var(--space-16);
-      margin-bottom: var(--space-6);
-    }
-
-    :global(h3) {
-      font-size: var(--text-3xl);
-      font-weight: var(--weight-bold);
-      letter-spacing: -0.02em;
-      line-height: 1.2;
-      margin-top: var(--space-12);
-      margin-bottom: var(--space-4);
-    }
-
-    :global(p) {
-      margin-bottom: var(--space-6);
-    }
-
-    :global(a) {
-      color: var(--color-accent);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-
-      &:hover {
-        color: var(--color-accent-hover);
-      }
-    }
-
-    :global(strong) {
-      font-weight: var(--weight-bold);
-      color: var(--color-text);
-    }
-
-    :global(em) {
-      font-style: italic;
-    }
-
-    :global(ul),
-    :global(ol) {
-      margin-bottom: var(--space-6);
-      padding-left: var(--space-8);
-
-      :global(li) {
-        margin-bottom: var(--space-2);
-      }
-    }
-
-    :global(blockquote) {
-      border-left: 3px solid var(--color-accent);
-      padding-left: var(--space-6);
-      color: var(--color-muted);
-      font-style: italic;
-      margin-block: var(--space-8);
-    }
-
-    :global(code) {
-      font-family: var(--font-mono);
-      font-size: 0.875em;
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border);
-      padding: 0.1em 0.4em;
-      border-radius: var(--radius-sm);
-    }
-
-    :global(pre) {
-      background-color: var(--color-surface);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
-      padding: var(--space-6);
-      overflow-x: auto;
-      margin-bottom: var(--space-8);
-      font-family: var(--font-mono);
-      font-size: var(--text-sm);
-      line-height: 1.7;
-
-      :global(code) {
-        background: none;
-        border: none;
-        padding: 0;
-        font-size: inherit;
-      }
-    }
-
-    :global(hr) {
-      border: none;
-      border-top: 1px solid var(--color-border);
-      margin-block: var(--space-12);
-    }
-
-    :global(img) {
-      border-radius: var(--radius-md);
-      margin-block: var(--space-8);
     }
   }
 </style>
