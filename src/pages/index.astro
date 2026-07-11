@@ -35,7 +35,11 @@ import { projects, socialLinks } from '../config/site';
               <div class="project-item__content">
                 <h3 class="project-item__title">
                   {project.url ? (
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.url}
+                      target={project.url.startsWith('/') ? undefined : '_blank'}
+                      rel={project.url.startsWith('/') ? undefined : 'noopener noreferrer'}
+                    >
                       {project.title}
                     </a>
                   ) : (

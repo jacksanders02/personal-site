@@ -20,7 +20,13 @@ import { theBox } from '../../config/site';
               <div class="tool-item__body">
                 <h2 class="tool-item__title">
                   {tool.url ? (
-                    <a href={tool.url} target="_blank" rel="noopener noreferrer">{tool.title}</a>
+                    <a
+                      href={tool.url}
+                      target={tool.url.startsWith('/') ? undefined : '_blank'}
+                      rel={tool.url.startsWith('/') ? undefined : 'noopener noreferrer'}
+                    >
+                      {tool.title}
+                    </a>
                   ) : (
                     tool.title
                   )}
