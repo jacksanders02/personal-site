@@ -1,14 +1,14 @@
 ---
 title: "Software Hut Project"
-description: "A full-stack platform for querying, annotating, and browsing interactive golf course maps, built for a real client with a 7-person team through the University of Sheffield's Software Hut module."
-date: "February – May 2023"
+description: "A full-stack platform for annotating, browsing, and optimising your play with interactive golf course maps, built for a real client with a 7-person team while taking the University of Sheffield's Software Hut module in my second year."
+date: "February - May 2023"
 tags: ["Ruby", "Rails", "JavaScript"]
 repo: "https://github.com/jacksanders02/strokes-gained"
 ---
 
 **95% individual grade · Software Hut Prize (Client Awarded)**
 
-The project involved creating a system enabling clients to query data about golf courses. Through weekly client meetings, the team gathered requirements via story cards and mockup diagrams. The system features two primary roles: map creators who design detailed hole maps, and regular users who leverage this data to improve their game using the "strokes gained" metric.
+For this project, my team and I were requested by our client to create a system which they could use to take a more data-driven approach to their play on various golf courses. Through weekly client meetings, we captured requirements via story cards in a kanban board, as well as a document containing mockups and specific non-functional requirements. The app that we created uses role-based access to distinguish between two categories of user: map creators, who use the annotation tool to create detailed course maps, and regular users who leverage this data to improve their game using the "strokes gained" metric.
 
 ### Login
 
