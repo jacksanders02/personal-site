@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog — Jack Sanders" description="Writing on development, design, and craft.">
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Writing</h1>
+
+      {posts.length === 0 ? (
+        <p class="empty">No posts yet. Check back soon.</p>
+      ) : (
+        <ol class="post-list" role="list">
+          {posts.map(post => (
+            <li class="post-item">
+              <time class="post-item__date" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </time>
+              <div class="post-item__body">
+                <h2 class="post-item__title">
+                  <a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a>
+                </h2>
+                <p class="post-item__desc">{post.data.description}</p>
+                {post.data.tags.length > 0 && (
+                  <ul class="post-item__tags" role="list">
+                    {post.data.tags.map(tag => <li>{tag}</li>)}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .empty {
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  .post-list {
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .post-item {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: var(--space-4) var(--space-12);
+    align-items: baseline;
+    padding-block: var(--space-12);
+    border-bottom: 1px solid var(--color-border);
+
+    &__date {
+      font-size: var(--text-sm);
+      color: var(--color-muted);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.02em;
+      padding-top: 0.35em;
+    }
+
+    &__title {
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-extrabold);
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-3);
+
+      a {
+        color: var(--color-text);
+        transition: color var(--transition-fast);
+
+        &:hover {
+          color: var(--color-accent);
+        }
+      }
+    }
+
+    &__desc {
+      color: var(--color-muted);
+      font-size: var(--text-base);
+      line-height: 1.6;
+      max-width: 60ch;
+      margin-bottom: var(--space-3);
+    }
+
+    &__tags {
+      list-style: none;
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+
+      li {
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semibold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .post-item {
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+    }
+  }
+</style>
