@@ -14,13 +14,25 @@ The project involved creating a system enabling clients to query data about golf
 
 The application includes a login interface with golf course imagery in the background.
 
+![The login page of my team's software hut project](./software-hut-login-page.png)
+
+*The login page of my team's software hut project*
+
 ### Map creator functionality
 
 Map interactions were built with Leaflet for the base map and Leaflet Geoman for drawing capabilities. Custom polygon controls were created for different terrain types, styled with SCSS variables to maintain consistency across the interface. Map creators can assign tags (such as "In Development" or "Complete") to control user visibility. The Overpass Turbo API pre-populated the database with golf course locations from OpenStreetMap, so creators only needed to add hole details.
 
+<video autoplay loop muted playsinline width="1024" height="552" src="/projects/software-hut/map-creation.mp4"></video>
+
+*An example of how a map creator might use the system.*
+
 ### User annotation
 
 Users can annotate maps in the same way as creators, with their annotations stored in personal database tables rather than the shared course databases.
+
+<video autoplay loop muted playsinline width="1024" height="552" src="/projects/software-hut/user-optimal.mp4"></video>
+
+*An example of how a user might use the system.*
 
 ### Shot optimisation algorithm
 
